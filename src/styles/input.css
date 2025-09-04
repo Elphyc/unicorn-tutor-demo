@@ -1,0 +1,55 @@
+.chat-input {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-input.speakOnly {
+  grid-template-columns: 1fr;
+}
+
+.mic-slot {
+  grid-column: 2;
+  position: relative;
+  height: 80px;
+  width: 80px;
+}
+
+.chat-input.speakOnly .mic-slot {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.text-send {
+  grid-column: 1 / span 1;
+  position: relative;
+}
+
+.text-input {
+  width: calc(100% - 68px);
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0 54px 0 14px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+}
+
+.send-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  width: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+

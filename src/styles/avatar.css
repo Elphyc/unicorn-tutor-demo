@@ -1,0 +1,16 @@
+.avatar-image {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: auto;
+  height: 60vh;
+  width: auto;
+  max-width: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: bottom left;
+  pointer-events: none;
+  user-select: none;
+  z-index: 100;
+}
+

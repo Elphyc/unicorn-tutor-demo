@@ -1,0 +1,30 @@
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    width: 100vw;
+  }
+
+  .chat-area {
+    width: 100vw;
+  }
+  .chat-history {
+    padding-top: 100px;
+  }
+  .avatar-image {
+    top: 0;
+    left: 0;
+    bottom: auto;
+    height: 20vh;
+    width: auto;
+    border: 2px solid #2e254e;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  .mode-toggle {
+    justify-self: center;
+  }
+}
+
