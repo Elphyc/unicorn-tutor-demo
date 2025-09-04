@@ -10,6 +10,7 @@ function TextSend({ value, onChange, onSend }: Props) {
       <input
         className="text-input"
         placeholder="Aa"
+        aria-label="Message"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => {
@@ -19,7 +20,13 @@ function TextSend({ value, onChange, onSend }: Props) {
           }
         }}
       />
-      <button className="send-btn" onClick={onSend} aria-label="Send">
+      <button
+        type="button"
+        className="send-btn"
+        onClick={onSend}
+        aria-label="Send"
+        disabled={!value.trim()}
+      >
         <svg
           width="22"
           height="22"
@@ -35,4 +42,3 @@ function TextSend({ value, onChange, onSend }: Props) {
 }
 
 export default TextSend;
-

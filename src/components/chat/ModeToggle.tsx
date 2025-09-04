@@ -7,14 +7,24 @@ type Props = {
 
 function ModeToggle({ mode, setMode }: Props) {
   return (
-    <div className="mode-toggle">
+    <div
+      className="mode-toggle"
+      role="radiogroup"
+      aria-label="Input mode"
+    >
       <button
+        type="button"
+        role="radio"
+        aria-checked={mode === "textSpeak"}
         className={`mode ${mode === "textSpeak" ? "active" : ""}`}
         onClick={() => setMode("textSpeak")}
       >
         Text and Speak
       </button>
       <button
+        type="button"
+        role="radio"
+        aria-checked={mode === "speakOnly"}
         className={`mode ${mode === "speakOnly" ? "active" : ""}`}
         onClick={() => setMode("speakOnly")}
       >
@@ -25,4 +35,3 @@ function ModeToggle({ mode, setMode }: Props) {
 }
 
 export default ModeToggle;
-

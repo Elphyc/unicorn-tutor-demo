@@ -32,6 +32,19 @@ function ChatArea() {
     setMessages((prev) => (prev.length ? prev : seed));
   }, []);
 
+  useEffect(() => {
+    const m = localStorage.getItem("mode");
+    if (m === "textSpeak" || m === "speakOnly") {
+      setMode(m);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("mode", mode);
+    } catch {}
+  }, [mode]);
+
 
   const send = () => {
     if (!draft.trim()) return;

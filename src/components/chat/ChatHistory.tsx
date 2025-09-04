@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import type { Message } from "./types";
+import type { Message, Mode } from "./types";
 
 type Props = {
   messages: Message[];
-  mode: string;
+  mode: Mode;
 };
 
 function ChatHistory({ messages, mode }: Props) {

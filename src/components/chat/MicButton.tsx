@@ -11,7 +11,7 @@ function MicButton() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
-  const audioCtxRef = useRef<any | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const rafIdRef = useRef<number | null>(null);
   const dataArrayRef = useRef<Uint8Array | null>(null);
@@ -37,8 +37,9 @@ function MicButton() {
 
   const beginLevelMeter = (stream: MediaStream) => {
     try {
-      const AudioContextCtor: any =
-        (window as any).AudioContext || (window as any).webkitAudioContext;
+      const AudioContextCtor = (
+        (window as any).AudioContext || (window as any).webkitAudioContext
+      ) as typeof AudioContext;
       const ctx = new AudioContextCtor();
       audioCtxRef.current = ctx;
       const source = ctx.createMediaStreamSource(stream);
@@ -107,12 +108,14 @@ function MicButton() {
         const url = URL.createObjectURL(blob);
         const audio = new Audio(url);
         try {
+          audio.onended = () => URL.revokeObjectURL(url);
           await audio.play();
         } catch (err) {
           const a = document.createElement("a");
           a.href = url;
           a.download = "recording.webm";
           a.click();
+          URL.revokeObjectURL(url);
         }
         mediaStreamRef.current?.getTracks().forEach((t) => t.stop());
         mediaStreamRef.current = null;
@@ -162,6 +165,7 @@ function MicButton() {
 
   return (
     <button
+      type="button"
       className={`mic-btn ${isRecording ? "recording" : ""}`}
       aria-label={isRecording ? "Stop and play" : "Record"}
       onClick={handleMicClick}
